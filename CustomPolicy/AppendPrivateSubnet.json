@@ -6,7 +6,7 @@
         "parameters": {
             "effectType": {
                 "type": "string",
-                "defaultValue": "ModAppnedify",
+                "defaultValue": "Appned",
                 "allowedValues": [
                     "Appned",
                     "Disabled"
