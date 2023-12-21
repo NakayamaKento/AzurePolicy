@@ -9,7 +9,8 @@
                 "defaultValue": "Audit",
                 "allowedValues": [
                     "Audit",
-                    "Disabled"
+                    "Disabled",
+                    "Deny"
                 ],
                 "metadata": {
                     "displayName": "Effect",
