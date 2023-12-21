@@ -1,14 +1,14 @@
 {
     "properties": {
-        "displayName": "Modify Private Subnet",
-        "description": "Modify Private Subnet",
+        "displayName": "Appned Private Subnet",
+        "description": "Appned Private Subnet",
         "mode": "all",
         "parameters": {
             "effectType": {
                 "type": "string",
-                "defaultValue": "Modify",
+                "defaultValue": "ModAppnedify",
                 "allowedValues": [
-                    "Modify",
+                    "Appned",
                     "Disabled"
                 ],
                 "metadata": {
@@ -33,16 +33,8 @@
             "then": {
                 "effect": "[parameters('effect')]",
                 "details": {
-                  "roleDefinitionIds": [
-                    "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7"
-                  ],
-                  "operations": [
-                    {
-                      "operation": "Add",
-                      "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
-                      "value": "false"
-                    }
-                  ]
+                    "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
+                    "value": "false"
                 }
             }
         }
