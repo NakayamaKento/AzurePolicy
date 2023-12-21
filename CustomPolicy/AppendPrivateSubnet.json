@@ -31,7 +31,7 @@
                 ]
             },
             "then": {
-                "effect": "[parameters('effect')]",
+                "effect": "[parameters('effectType')]",
                 "details": [
                     {
                       "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
