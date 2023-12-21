@@ -41,7 +41,7 @@
                     {
                       "operation": "addOrReplace",
                       "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
-                      "value": false
+                      "value": "false"
                     }
                   ]
                 }
