@@ -2,7 +2,7 @@
     "properties": {
         "displayName": "Appned Private Subnet",
         "description": "Appned Private Subnet",
-        "mode": "all",
+        "mode": "Indexed",
         "parameters": {
             "effectType": {
                 "type": "string",
