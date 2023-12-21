@@ -1,0 +1,38 @@
+{
+    "properties": {
+        "displayName": "Audit Private Subnet",
+        "description": "Check using Private Subnet or not",
+        "mode": "all",
+        "parameters": {
+            "effectType": {
+                "type": "string",
+                "defaultValue": "Audit",
+                "allowedValues": [
+                    "Audit",
+                    "Disabled"
+                ],
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy"
+                }
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
+                        "notEquals": "false"
+                    }
+                ]
+            },
+            "then": {
+                "effect": "[parameters('effectType')]"
+            }
+        }
+    }
+}
