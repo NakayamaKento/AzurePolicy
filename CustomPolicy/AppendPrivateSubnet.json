@@ -1,14 +1,14 @@
 {
     "properties": {
-        "displayName": "Appned Private Subnet",
-        "description": "Appned Private Subnet",
+        "displayName": "Append Private Subnet",
+        "description": "Append Private Subnet",
         "mode": "all",
         "parameters": {
             "effectType": {
                 "type": "string",
-                "defaultValue": "Appned",
+                "defaultValue": "Append",
                 "allowedValues": [
-                    "Appned",
+                    "Append",
                     "Disabled"
                 ],
                 "metadata": {
