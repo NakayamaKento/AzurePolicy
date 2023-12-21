@@ -1,15 +1,15 @@
 {
     "properties": {
-        "displayName": "Deny Private Subnet",
-        "description": "Block using not Private Subnet(22:44)",
+        "displayName": "Modify Private Subnet",
+        "description": "Modify Private Subnet",
         "mode": "all",
         "parameters": {
             "effectType": {
                 "type": "string",
-                "defaultValue": "Deny",
+                "defaultValue": "Modify",
                 "allowedValues": [
-                    "Disabled",
-                    "Deny"
+                    "Modify",
+                    "Disabled"
                 ],
                 "metadata": {
                     "displayName": "Effect",
@@ -31,7 +31,20 @@
                 ]
             },
             "then": {
-                "effect": "[parameters('effectType')]"
+                "effect": "[parameters('effect')]",
+                "details": {
+                  "conflictEffect": "audit",
+                  "roleDefinitionIds": [
+                    "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7"
+                  ],
+                  "operations": [
+                    {
+                      "operation": "addOrReplace",
+                      "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
+                      "value": false
+                    }
+                  ]
+                }
             }
         }
     }
