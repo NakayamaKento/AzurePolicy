@@ -33,13 +33,12 @@
             "then": {
                 "effect": "[parameters('effect')]",
                 "details": {
-                  "conflictEffect": "audit",
                   "roleDefinitionIds": [
                     "/providers/Microsoft.Authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7"
                   ],
                   "operations": [
                     {
-                      "operation": "addOrReplace",
+                      "operation": "Add",
                       "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
                       "value": "false"
                     }
