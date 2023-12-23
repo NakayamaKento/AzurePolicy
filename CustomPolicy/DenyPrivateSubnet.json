@@ -26,7 +26,7 @@
                     },
                     {
                         "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
-                        "notEquals": "true"
+                        "equals": "true"
                     }
                 ]
             },
