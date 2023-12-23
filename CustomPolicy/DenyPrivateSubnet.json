@@ -1,7 +1,7 @@
 {
     "properties": {
         "displayName": "Deny Private Subnet",
-        "description": "Vnet を新規作成する場合は、リソースの種類を Vnet にしておく必要がある。",
+        "description": "Vnet の新規作成時に Private Subnet が無効になっているものを禁止する。Vnet を新規作成する場合は、リソースの種類を Vnet にしておく必要がある。",
         "mode": "all",
         "parameters": {
             "effectType": {
