@@ -1,7 +1,7 @@
 {
     "properties": {
         "displayName": "Deny Private Subnet",
-        "description": "Block defaultOutboundAccess:true ",
+        "description": "Vnet を新規作成する場合は、リソースの種類を Vnet にしておく必要がある。",
         "mode": "all",
         "parameters": {
             "effectType": {
@@ -19,19 +19,25 @@
         },
         "policyRule": {
             "if": {
-                "allOf": [
-                    {
-                        "field": "type",
-                        "equals": "Microsoft.Network/virtualNetworks/subnets"
-                    },
-                    {
-                        "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
-                        "equals": "true"
+              "allOf": [
+                {
+                  "field": "type",
+                  "equals": "Microsoft.Network/virtualNetworks"
+                },
+                {
+                  "count": {
+                    "field": "Microsoft.Network/virtualnetworks/subnets[*]",
+                    "where": {
+                      "field": "Microsoft.Network/virtualnetworks/subnets[*].defaultOutboundAccess",
+                      "equals": "false"
                     }
-                ]
+                  },
+                  "notEquals": "[length(field('Microsoft.Network/virtualnetworks/subnets[*]'))]"
+                }
+              ]
             },
             "then": {
-                "effect": "[parameters('effectType')]"
+              "effect": "[parameters('effectType')]"
             }
         }
     }
