@@ -1,0 +1,38 @@
+{
+    "properties": {
+        "displayName": "Deny not Private Subnet with Existing Vnet",
+        "description": "(2023/12 仕様上、意味なし) 既存 Vnet への Subnet の追加時に Private Subnet が無効になっているものを禁止する。リソースの種類を Subnet にしておく必要がある。",
+        "mode": "all",
+        "parameters": {
+            "effectType": {
+                "type": "string",
+                "defaultValue": "Deny",
+                "allowedValues": [
+                    "Deny",
+                    "Disabled"
+                ],
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy"
+                }
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Network/virtualNetworks/subnets"
+                    },
+                    {
+                        "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
+                        "notEquals": "false"
+                    }
+                ]
+            },
+            "then": {
+                "effect": "[parameters('effectType')]"
+            }
+        }
+    }
+}
