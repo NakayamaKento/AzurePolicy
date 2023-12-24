@@ -1,0 +1,38 @@
+{
+    "properties": {
+        "displayName": "Deny Subnet Name 'default' ",
+        "description": "subnet の仕様を確認するため。default という名前の Subnet を禁止する",
+        "mode": "all",
+        "parameters": {
+            "effectType": {
+                "type": "string",
+                "defaultValue": "Deny",
+                "allowedValues": [
+                    "Deny",
+                    "Disabled"
+                ],
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy"
+                }
+            }
+        },
+        "policyRule": {
+            "if": {
+              "allOf": [
+                {
+                  "field": "type",
+                  "equals": "Microsoft.Network/virtualNetworks/subnets"
+                },
+                {
+                  "field": "name",
+                  "equals": "default"
+                }
+              ]
+            },
+            "then": {
+              "effect": "[parameters('effectType')]"
+            }
+        }
+    }
+}

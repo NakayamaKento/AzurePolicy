@@ -1,12 +1,12 @@
 {
     "properties": {
         "displayName": "Modify Private Subnet",
-        "description": "AppModifyend Private Subnet",
+        "description": "(defaultOutboundAccess が Modify に未対応なので使用不可) Modify Private Subnet",
         "mode": "all",
         "parameters": {
             "effectType": {
                 "type": "string",
-                "defaultValue": "AppModifyend",
+                "defaultValue": "Modify",
                 "allowedValues": [
                     "Modify",
                     "Disabled"

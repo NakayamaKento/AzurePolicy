@@ -1,7 +1,7 @@
 {
     "properties": {
         "displayName": "Append Private Subnet",
-        "description": "Append Private Subnet",
+        "description": "既存 Vnet に Subnet を追加する際に。defaultOutboundAccess プロパティを Append し、Private Subnet を有効化する",
         "mode": "all",
         "parameters": {
             "effectType": {
