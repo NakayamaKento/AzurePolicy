@@ -1,0 +1,52 @@
+{
+    "properties": {
+        "displayName": "Deny not Private Subnet with New Vnet",
+        "description": "[Preview] サブネットの委任をバイパスする。Vnet の新規作成時に Private Subnet が無効になっているものを禁止する。Vnet を新規作成する場合は、リソースの種類を Vnet にしておく必要がある。",
+        "mode": "all",
+        "parameters": {
+            "effectType": {
+                "type": "string",
+                "defaultValue": "Deny",
+                "allowedValues": [
+                    "Disabled",
+                    "Deny"
+                ],
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy"
+                }
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Network/virtualNetworks"
+                    },
+                    {
+                        "count": {
+                            "field": "Microsoft.Network/virtualnetworks/subnets[*]",
+                            "where": {
+                                "allOf": [
+                                    {
+                                        "field": "Microsoft.Network/virtualnetworks/subnets[*].defaultOutboundAccess",
+                                        "equals": "true"
+                                    },
+                                    {
+                                        "field": "Microsoft.Network/virtualNetworks/subnets[*].delegations[*].id",
+                                        "greaterOrEquals": "1"
+                                    }
+                                ]
+                            }
+                        },
+                        "notEquals": "[length(field('Microsoft.Network/virtualNetworks/subnets[*].delegations[*]'))]"
+                    }
+                ]
+            },
+            "then": {
+                "effect": "[parameters('effectType')]"
+            }
+        }
+    }
+}
