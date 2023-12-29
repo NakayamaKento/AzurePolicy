@@ -21,13 +21,17 @@
             "if": {
                 "allOf": [
                     {
-                        "field": "type",
-                        "equals": "Microsoft.Network/virtualNetworks/subnets"
-                    },
-                    {
-                        "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
-                        "notEquals": "false"
-                    }
+                    "field": "type",
+                    "equals": "Microsoft.Network/virtualNetworks/subnets"
+                  },
+                  {
+                    "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
+                    "notEquals": "false"
+                  },
+                  {
+                    "field": "Microsoft.Network/virtualNetworks/subnets/delegations",
+                    "exists": false
+                  }
                 ]
             },
             "then": {
