@@ -27,6 +27,10 @@
                     {
                         "field": "Microsoft.Network/virtualnetworks/subnets/defaultOutboundAccess",
                         "notEquals": "false"
+                    },
+                    {
+                        "field": "Microsoft.Network/virtualNetworks/subnets/delegations",
+                        "exists": false
                     }
                 ]
             },
