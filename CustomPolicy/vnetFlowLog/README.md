@@ -1,5 +1,5 @@
 # 概要
-Auzre Policy で Vnet フローログを作成します
+Auzre Policy で Vnet フローログを作成します  
 参考にした組み込みポリシーは `3e9965dc-cc13-47ca-8259-a4252fd0cf7b` です
 
 # 目的
@@ -8,14 +8,13 @@ Auzre Policy で Vnet フローログを作成します
 
 本カスタムポリシーでは、ワークスペース ID や Storage Account、Network Watcher の名前をパラメーターに指定することなく、ポリシーを適用することができます。
 
-| パラメーター | 説明 |
+| 重要パラメーター | 説明 |
 |:-------------|:-----|
 | `resourceGroupName` | ストレージアカウントとLog Analyticsワークスペースを保存するリソースグループ。本ポリシーを適用する環境ではすべて同じ名前とします |
 | `networkWatcherName` | フローログを作成する Network Watcher の名前 |
 | `storageAccountName` | リソース グループ ID からハッシュ値を利用して一意に決めます |
-| `workspaceId` | フローログを保存する Log Analytics のワークスペース ID |
 
-
+![alt text](image.png)
 ```mermaid
 ---
 title: サブスクリプション全体構成
