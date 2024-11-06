@@ -1,0 +1,158 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "metadata": {
+      "_generator": {
+        "name": "bicep",
+        "version": "0.30.23.60470",
+        "templateHash": "12212016188194380358"
+      }
+    },
+    "parameters": {
+      "timeInterval": {
+        "type": "string"
+      },
+      "workspaceRegion": {
+        "type": "string"
+      },
+      "networkWatcherRG": {
+        "type": "string"
+      },
+      "networkWatcherName": {
+        "type": "string"
+      },
+      "flowlogName": {
+        "type": "string"
+      },
+      "location": {
+        "type": "string"
+      },
+      "targetResource": {
+        "type": "string"
+      },
+      "retentionDays": {
+        "type": "string"
+      },
+      "workspacename": {
+        "type": "string"
+      },
+      "workspaceResorceGroup": {
+        "type": "string"
+      }
+    },
+    "resources": [
+      {
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2022-09-01",
+        "name": "[format('flowlogDeployment-{0}', uniqueString(parameters('flowlogName')))]",
+        "resourceGroup": "[parameters('networkWatcherRG')]",
+        "properties": {
+          "expressionEvaluationOptions": {
+            "scope": "inner"
+          },
+          "mode": "Incremental",
+          "parameters": {
+            "networkWatcherName": {
+              "value": "[parameters('networkWatcherName')]"
+            },
+            "flowlogName": {
+              "value": "[parameters('flowlogName')]"
+            },
+            "location": {
+              "value": "[parameters('location')]"
+            },
+            "targetResource": {
+              "value": "[parameters('targetResource')]"
+            },
+            "workspaceRegion": {
+              "value": "[parameters('workspaceRegion')]"
+            },
+            "workspacename": {
+              "value": "[parameters('workspacename')]"
+            },
+            "workspaceResorceGroup": {
+              "value": "[parameters('workspaceResorceGroup')]"
+            },
+            "timeInterval": {
+              "value": "[parameters('timeInterval')]"
+            },
+            "retentionDays": {
+              "value": "[parameters('retentionDays')]"
+            }
+          },
+          "template": {
+            "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+            "contentVersion": "1.0.0.0",
+            "metadata": {
+              "_generator": {
+                "name": "bicep",
+                "version": "0.30.23.60470",
+                "templateHash": "10550524873332020455"
+              }
+            },
+            "parameters": {
+              "networkWatcherName": {
+                "type": "string"
+              },
+              "flowlogName": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              },
+              "targetResource": {
+                "type": "string"
+              },
+              "workspaceRegion": {
+                "type": "string"
+              },
+              "timeInterval": {
+                "type": "string"
+              },
+              "retentionDays": {
+                "type": "string"
+              },
+              "workspacename": {
+                "type": "string"
+              },
+              "workspaceResorceGroup": {
+                "type": "string"
+              }
+            },
+            "variables": {
+              "fullWorkspaceResourceGroup": "[format('{0}/resourceGroups/{1}', subscription().id, parameters('workspaceResorceGroup'))]"
+            },
+            "resources": [
+              {
+                "type": "Microsoft.Network/networkWatchers/flowLogs",
+                "apiVersion": "2022-09-01",
+                "name": "[format('{0}/{1}', resourceId('Microsoft.Network/networkWatchers', parameters('networkWatcherName')), parameters('flowlogName'))]",
+                "location": "[parameters('location')]",
+                "properties": {
+                  "targetResourceId": "[parameters('targetResource')]",
+                  "storageId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('workspaceResorceGroup')), 'Microsoft.Storage/storageAccounts', format('storage{0}', uniqueString(variables('fullWorkspaceResourceGroup'))))]",
+                  "enabled": "true",
+                  "flowAnalyticsConfiguration": {
+                    "networkWatcherFlowAnalyticsConfiguration": {
+                      "enabled": true,
+                      "workspaceRegion": "[parameters('workspaceRegion')]",
+                      "workspaceResourceId": "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('workspaceResorceGroup')), 'Microsoft.OperationalInsights/workspaces', parameters('workspacename'))]",
+                      "trafficAnalyticsInterval": "[parameters('timeInterval')]"
+                    }
+                  },
+                  "retentionPolicy": {
+                    "days": "[parameters('retentionDays')]",
+                    "enabled": "true"
+                  },
+                  "format": {
+                    "type": "JSON",
+                    "version": 2
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
