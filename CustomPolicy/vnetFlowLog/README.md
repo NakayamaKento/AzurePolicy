@@ -15,6 +15,13 @@ Auzre Policy で Vnet フローログを作成します
 | `storageAccountName` | リソース グループ ID からハッシュ値を利用して一意に決めます |
 
 ![alt text](image.png)
+
+# 利用イメージ
+Vnet の作成後、約10分後に Policy [DeployIfNotExists] でフローログを作成します  
+複数サブスクリプションで同様に処理ができています  
+![alt text](image-1.png)
+
+
 ```mermaid
 ---
 title: サブスクリプション全体構成
