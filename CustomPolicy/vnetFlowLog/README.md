@@ -49,7 +49,7 @@ class nw1 SCP
 # Azure Policy のサンプル
 | ファイル名 | 説明 |
 |:-----------|:-----|
-| VnetFlowLogCrossSubscription.json | 確定版。 |
+| VnetFlowLogCrossSubscription.json | カスタム ポリシーのサンプルです |
 
 # ARM template
 ARM template ファイル配下には、以下のファイルがあります。
@@ -64,3 +64,16 @@ Bicep ファイル配下には、以下のファイルがあります。
 | storage.bicep | リソース グループ の ID からストレージアカウントを作成する Bicep |
 | custom_flowlog01_armtemplate.bicep | モジュールを呼び出す Bicep。参考にした Azure Policy を踏襲 |
 | nested_flowlogDeployment_flowlog.bicep | フローログを作成する Bicep |
+
+# 使い方
+1. Azure Policy でカスタム ポリシーを作成します
+2. パラメーターに `resourceGroupName`、`networkWatcherName`、`Log Analyticsワークスペース名`、`リージョン` を指定し、ポリシーを適用します
+    - 複数環境に利用できるので管理グループに適用するのがオススメです
+3. ポリシーを割り当てたサブスクリプションに指定した リソースグループ、Log Analyticsワークスペース、ストレージアカウントを作成します
+    - ストレージアカウントは Storage.bicep を利用して作成します
+
+
+# 注意
+Flow Log は Vnet と同じリージョンにあるストレージ アカウントに保存する必要があります
+本カスタム ポリシーではストレージアカウントが複数リージョンに対応していません
+ストレージアカウント名のサフィックスやプレフィックスにリージョン名を付与することで、複数リージョンに対応することができる想定です
