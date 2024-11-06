@@ -19,6 +19,7 @@ Auzre Policy で Vnet フローログを作成します
 # 利用イメージ
 Vnet の作成後、約10分後に Policy [DeployIfNotExists] でフローログを作成します  
 複数サブスクリプションで同様に処理ができています  
+※画像から判断はできませんが、ポリシーの割り当ては管理グループの1カ所だけです  
 ![alt text](image-1.png)
 
 
