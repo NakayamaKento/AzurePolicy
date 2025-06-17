@@ -1,0 +1,32 @@
+{
+    "properties": {
+        "displayName": "[Custom] Storage Account Immutability Configure",
+        "mode": "all",
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Storage/storageAccounts"
+                    }
+                ]
+            },
+            "then": {
+                "effect": "append",
+                "details": [
+                    {
+                        "field": "Microsoft.Storage/storageAccounts/immutableStorageWithVersioning",
+                        "value": {
+                            "enabled": true,
+                            "immutabilityPolicy": {
+                                "immutabilityPeriodSinceCreationInDays": 1,
+                                "state": "Unlocked",
+                                "allowProtectedAppendWrites": true
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "properties": {
+        "displayName": "[Custom]Vnet Custom DNS",
+        "description": "Vnet にカスタム DNS サーバーを設定します",
+        "mode": "all",
+        "parameters": {
+
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "microsoft.network/virtualnetworks"
+                    }
+                ]
+            },
+            "then": {
+                "effect": "append",
+                "details": [
+                    {
+                        "field": "Microsoft.Network/virtualNetworks/dhcpOptions.dnsServers[*]",
+                        "value": "1.1.1.1"
+                    }
+                ]
+            }
+        }
+    }
+}
